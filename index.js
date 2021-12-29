@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const generateReadMe = require("./generateReadMe")
 const fs = require('fs');
 inquirer
-    /* Pass your questions in here */
+    /* Pass questions */
   .prompt([
       {
         type: 'input',
@@ -44,9 +44,10 @@ inquirer
         type: 'list',
         message: 'Please choose your license',
         choices: [
-            'License1',
-            'License2',
-            'License3',
+            'Apache 2.0 License',
+            'MIT',
+            'ISC',
+            'None',
         ],
         name: 'license',
       }
@@ -55,15 +56,20 @@ inquirer
     // Use user feedback 
     // FileSystem.writeFile(`${answers.title}.jason`, 
     // JSON.stringify(answers, null, 2), 
-    // err => err ? console.error(err) : console.log('Success'));
+
+    if (answers.license === "Apache 2.0 License") {
+        answers.license = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";    
+    } else if (answers.license === "MIT") {
+        answers.license = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+    } else if (answers.license === "ISC") {
+        answers.license = "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)"
+    } 
+    
     generateReadMe(answers)
-
-
 
     console.log("answers", answers);
 
     fs.writeFile("README.md", generateReadMe(answers), function (err) {
-        console.log(err);
     })
 })
   .catch((error) => {

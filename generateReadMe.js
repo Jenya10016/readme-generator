@@ -2,6 +2,15 @@ function generateReadMe(answers) {
 return `
 # ${answers.title}
 
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributors](#contribution)
+- [Testing](#testInstructions)
+- [License](#license)
+
 ## Description
 ${answers.description}
 
