@@ -1,4 +1,6 @@
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
+const generateReadMe = require("./generateReadMe")
+const fs = require('fs');
 inquirer
     /* Pass your questions in here */
   .prompt([
@@ -28,7 +30,7 @@ inquirer
 
       {
         type: 'input',
-        message: 'Please add contribution guidlines',
+        message: 'Please add contribution guidelines',
         name: 'contribution',
       },
 
@@ -41,14 +43,31 @@ inquirer
       {
         type: 'list',
         message: 'Please choose your license',
-        choice: 'License',
+        choices: [
+            'License1',
+            'License2',
+            'License3',
+        ],
         name: 'license',
       }
   ])
   .then((answers) => {
-    // Use user feedback for... whatever!!
-  })
+    // Use user feedback 
+    // FileSystem.writeFile(`${answers.title}.jason`, 
+    // JSON.stringify(answers, null, 2), 
+    // err => err ? console.error(err) : console.log('Success'));
+    generateReadMe(answers)
+
+
+
+    console.log("answers", answers);
+
+    fs.writeFile("README.md", generateReadMe(answers), function (err) {
+        console.log(err);
+    })
+})
   .catch((error) => {
+      console.log('Error: ' + error)
     if (error.isTtyError) {
       // Prompt couldn't be rendered in the current environment
     } else {
