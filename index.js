@@ -54,8 +54,6 @@ inquirer
   ])
   .then((answers) => {
     // Use user feedback 
-    // FileSystem.writeFile(`${answers.title}.jason`, 
-    // JSON.stringify(answers, null, 2), 
 
     if (answers.license === "Apache 2.0 License") {
         answers.license = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";    
@@ -64,12 +62,10 @@ inquirer
     } else if (answers.license === "ISC") {
         answers.license = "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)"
     } 
-    
-    generateReadMe(answers)
 
     console.log("answers", answers);
 
-    fs.writeFile("README.md", generateReadMe(answers), function (err) {
+    fs.writeFile("PROREADME.md", generateReadMe(answers), function (err) {
     })
 })
   .catch((error) => {
