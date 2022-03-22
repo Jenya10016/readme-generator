@@ -1,5 +1,5 @@
 
-# Read Me Generator
+# node install
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@
 - [License](#license)
 
 ## Description
-Promts user and generates a Read Me 
+Readme generator
 
 ## Installation
 npm i
